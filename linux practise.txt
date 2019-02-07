@@ -1,0 +1,135 @@
+gopalkrishna@ubuntu:~$ mkdir inputdir
+gopalkrishna@ubuntu:~$ cd inputdir
+gopalkrishna@ubuntu:~/inputdir$ ll
+total 8
+drwxrwxr-x  2 gopalkrishna gopalkrishna 4096 Jan 18 21:33 ./
+drwxr-xr-x 30 gopalkrishna gopalkrishna 4096 Jan 18 21:33 ../
+gopalkrishna@ubuntu:~/inputdir$ pwd
+/home/gopalkrishna/inputdir
+gopalkrishna@ubuntu:~/inputdir$ nano j.log
+gopalkrishna@ubuntu:~/inputdir$ ll
+total 12
+drwxrwxr-x  2 gopalkrishna gopalkrishna 4096 Jan 18 21:36 ./
+drwxr-xr-x 30 gopalkrishna gopalkrishna 4096 Jan 18 21:33 ../
+-rw-rw-r--  1 gopalkrishna gopalkrishna 1528 Jan 18 21:36 j.log
+gopalkrishna@ubuntu:~/inputdir$ cat j.log
+public class PA_ConsentFormPdfCont {
+
+  public string pid;
+  
+  public ELE_Agreement__c pa{get;set;}
+  
+  public string sapId{get;set;}
+  
+  public string legalEmplyName{get;set;}
+  
+  public string legalEntity{get;set;}
+  
+  public string opt;
+  
+  public Boolean isCheck{get;set;}
+  
+  public Boolean isCheck2{get;set;}
+  
+  public Boolean isCheck3{get;set;}
+  
+  public string name{get;set;}
+ 
+  public PA_ConsentFormPdfCont()
+  {
+  
+    pid=ApexPages.CurrentPage().getParameters().get('id');
+      
+      try
+      {
+       pa=[Select id,Legal_Name_of_the_Employee__c,Legal_Entity__c,SAP_ID__c from ELE_Agreement__c where id=:pid];
+       
+       legalEmplyName=pa.Legal_Name_of_the_Employee__c;
+       
+       sapID=pa.SAP_ID__c ;
+       
+       legalEntity=pa.Legal_Entity__c;
+       
+       opt=ApexPages.CurrentPage().getParameters().get('option');
+       
+       if(opt=='opt1')
+        {
+          isCheck=true;
+          isCheck2=false;
+          isCheck3=false; 
+         
+        }
+        if(opt=='opt2')
+        {
+          isCheck2=true;
+          isCheck=false;
+          isCheck3=false;
+          
+         name=ApexPages.currentPage().getParameters().get('para');
+           
+        }
+        
+        if(opt=='opt3')
+        {
+          isCheck2=false;
+          isCheck=false;
+          isCheck3=true;
+          
+         name=ApexPages.currentPage().getParameters().get('para');
+           
+        }
+       
+       
+      }
+      catch(Exception e)
+      {
+      
+      }
+      
+        
+    }
+      
+}
+
+gopalkrishna@ubuntu:~/inputdir$ ll
+total 12
+drwxrwxr-x  2 gopalkrishna gopalkrishna 4096 Jan 18 21:36 ./
+drwxr-xr-x 30 gopalkrishna gopalkrishna 4096 Jan 18 21:33 ../
+-rw-rw-r--  1 gopalkrishna gopalkrishna 1528 Jan 18 21:36 j.log
+gopalkrishna@ubuntu:~/inputdir$ ls
+j.log
+gopalkrishna@ubuntu:~/inputdir$ touch dm.log
+gopalkrishna@ubuntu:~/inputdir$ whoami
+gopalkrishna
+gopalkrishna@ubuntu:~/inputdir$ hostname
+ubuntu
+gopalkrishna@ubuntu:~/inputdir$ wc a.log
+wc: a.log: No such file or directory
+gopalkrishna@ubuntu:~/inputdir$ cat a.log | wc -w
+cat: a.log: No such file or directory
+0
+gopalkrishna@ubuntu:~/inputdir$ cat j.log | wc -w
+78
+gopalkrishna@ubuntu:~/inputdir$ wc j.log
+  78   78 1528 j.log
+gopalkrishna@ubuntu:~/inputdir$ cat j.log | wc -l
+78
+gopalkrishna@ubuntu:~/inputdir$ cat j.log | wc -c
+1528
+gopalkrishna@ubuntu:~/inputdir$ stat a.log
+stat: cannot stat ‘a.log’: No such file or directory
+gopalkrishna@ubuntu:~/inputdir$ stat j.log
+  File: ‘j.log’
+  Size: 1528      	Blocks: 8          IO Block: 4096   regular file
+Device: 801h/2049d	Inode: 536297      Links: 1
+Access: (0664/-rw-rw-r--)  Uid: ( 1000/gopalkrishna)   Gid: ( 1000/gopalkrishna)
+Access: 2018-01-18 21:36:26.882897516 -0800
+Modify: 2018-01-18 21:36:02.290898382 -0800
+Change: 2018-01-18 21:36:02.290898382 -0800
+ Birth: -
+gopalkrishna@ubuntu:~/inputdir$ df j.log
+Filesystem     1K-blocks    Used Available Use% Mounted on
+/dev/sda1       19478204 9807056   8658668  54% /
+gopalkrishna@ubuntu:~/inputdir$ du j.log
+4	j.log
+gopalkrishna@ubuntu:~/inputdir$ 

@@ -1,0 +1,450 @@
+gopalkrishna@ubuntu:~$ mkdir inputdir
+gopalkrishna@ubuntu:~$ cd inputdir
+gopalkrishna@ubuntu:~/inputdir$ ll
+total 8
+drwxrwxr-x  2 gopalkrishna gopalkrishna 4096 Jan 18 21:33 ./
+drwxr-xr-x 30 gopalkrishna gopalkrishna 4096 Jan 18 21:33 ../
+gopalkrishna@ubuntu:~/inputdir$ pwd
+/home/gopalkrishna/inputdir
+gopalkrishna@ubuntu:~/inputdir$ nano j.log
+gopalkrishna@ubuntu:~/inputdir$ ll
+total 12
+drwxrwxr-x  2 gopalkrishna gopalkrishna 4096 Jan 18 21:36 ./
+drwxr-xr-x 30 gopalkrishna gopalkrishna 4096 Jan 18 21:33 ../
+-rw-rw-r--  1 gopalkrishna gopalkrishna 1528 Jan 18 21:36 j.log
+gopalkrishna@ubuntu:~/inputdir$ cat j.log
+public class PA_ConsentFormPdfCont {
+
+  public string pid;
+  
+  public ELE_Agreement__c pa{get;set;}
+  
+  public string sapId{get;set;}
+  
+  public string legalEmplyName{get;set;}
+  
+  public string legalEntity{get;set;}
+  
+  public string opt;
+  
+  public Boolean isCheck{get;set;}
+  
+  public Boolean isCheck2{get;set;}
+  
+  public Boolean isCheck3{get;set;}
+  
+  public string name{get;set;}
+ 
+  public PA_ConsentFormPdfCont()
+  {
+  
+    pid=ApexPages.CurrentPage().getParameters().get('id');
+      
+      try
+      {
+       pa=[Select id,Legal_Name_of_the_Employee__c,Legal_Entity__c,SAP_ID__c from ELE_Agreement__c where id=:pid];
+       
+       legalEmplyName=pa.Legal_Name_of_the_Employee__c;
+       
+       sapID=pa.SAP_ID__c ;
+       
+       legalEntity=pa.Legal_Entity__c;
+       
+       opt=ApexPages.CurrentPage().getParameters().get('option');
+       
+       if(opt=='opt1')
+        {
+          isCheck=true;
+          isCheck2=false;
+          isCheck3=false; 
+         
+        }
+        if(opt=='opt2')
+        {
+          isCheck2=true;
+          isCheck=false;
+          isCheck3=false;
+          
+         name=ApexPages.currentPage().getParameters().get('para');
+           
+        }
+        
+        if(opt=='opt3')
+        {
+          isCheck2=false;
+          isCheck=false;
+          isCheck3=true;
+          
+         name=ApexPages.currentPage().getParameters().get('para');
+           
+        }
+       
+       
+      }
+      catch(Exception e)
+      {
+      
+      }
+      
+        
+    }
+      
+}
+
+gopalkrishna@ubuntu:~/inputdir$ ll
+total 12
+drwxrwxr-x  2 gopalkrishna gopalkrishna 4096 Jan 18 21:36 ./
+drwxr-xr-x 30 gopalkrishna gopalkrishna 4096 Jan 18 21:33 ../
+-rw-rw-r--  1 gopalkrishna gopalkrishna 1528 Jan 18 21:36 j.log
+gopalkrishna@ubuntu:~/inputdir$ ls
+j.log
+gopalkrishna@ubuntu:~/inputdir$ touch dm.log
+gopalkrishna@ubuntu:~/inputdir$ whoami
+gopalkrishna
+gopalkrishna@ubuntu:~/inputdir$ hostname
+ubuntu
+gopalkrishna@ubuntu:~/inputdir$ wc a.log
+wc: a.log: No such file or directory
+gopalkrishna@ubuntu:~/inputdir$ cat a.log | wc -w
+cat: a.log: No such file or directory
+0
+gopalkrishna@ubuntu:~/inputdir$ cat j.log | wc -w
+78
+gopalkrishna@ubuntu:~/inputdir$ wc j.log
+  78   78 1528 j.log
+gopalkrishna@ubuntu:~/inputdir$ cat j.log | wc -l
+78
+gopalkrishna@ubuntu:~/inputdir$ cat j.log | wc -c
+1528
+gopalkrishna@ubuntu:~/inputdir$ stat a.log
+stat: cannot stat ‘a.log’: No such file or directory
+gopalkrishna@ubuntu:~/inputdir$ stat j.log
+  File: ‘j.log’
+  Size: 1528      	Blocks: 8          IO Block: 4096   regular file
+Device: 801h/2049d	Inode: 536297      Links: 1
+Access: (0664/-rw-rw-r--)  Uid: ( 1000/gopalkrishna)   Gid: ( 1000/gopalkrishna)
+Access: 2018-01-18 21:36:26.882897516 -0800
+Modify: 2018-01-18 21:36:02.290898382 -0800
+Change: 2018-01-18 21:36:02.290898382 -0800
+ Birth: -
+gopalkrishna@ubuntu:~/inputdir$ df j.log
+Filesystem     1K-blocks    Used Available Use% Mounted on
+/dev/sda1       19478204 9807056   8658668  54% /
+gopalkrishna@ubuntu:~/inputdir$ du j.log
+4	j.log
+gopalkrishna@ubuntu:~/inputdir$ 
+gopalkrishna@ubuntu:~/inputdir$ start-all.sh
+This script is Deprecated. Instead use start-dfs.sh and start-yarn.sh
+Starting namenodes on [localhost]
+localhost: starting namenode, logging to /home/gopalkrishna/INSTALL/hadoop-2.6.0/logs/hadoop-gopalkrishna-namenode-ubuntu.out
+localhost: starting datanode, logging to /home/gopalkrishna/INSTALL/hadoop-2.6.0/logs/hadoop-gopalkrishna-datanode-ubuntu.out
+Starting secondary namenodes [0.0.0.0]
+0.0.0.0: starting secondarynamenode, logging to /home/gopalkrishna/INSTALL/hadoop-2.6.0/logs/hadoop-gopalkrishna-secondarynamenode-ubuntu.out
+starting yarn daemons
+starting resourcemanager, logging to /home/gopalkrishna/INSTALL/hadoop-2.6.0/logs/yarn-gopalkrishna-resourcemanager-ubuntu.out
+localhost: starting nodemanager, logging to /home/gopalkrishna/INSTALL/hadoop-2.6.0/logs/yarn-gopalkrishna-nodemanager-ubuntu.out
+gopalkrishna@ubuntu:~/inputdir$ jps
+3613 NameNode
+3912 SecondaryNameNode
+4285 NodeManager
+4329 Jps
+4158 ResourceManager
+3736 DataNode
+gopalkrishna@ubuntu:~/inputdir$ hdfs dfs-mkdir /jaganprac
+
+
+
+
+Error: Could not find or load main class dfs-mkdir
+gopalkrishna@ubuntu:~/inputdir$ 
+gopalkrishna@ubuntu:~/inputdir$ 
+gopalkrishna@ubuntu:~/inputdir$ 
+gopalkrishna@ubuntu:~/inputdir$ 
+gopalkrishna@ubuntu:~/inputdir$ jps
+3613 NameNode
+3912 SecondaryNameNode
+4760 Jps
+4285 NodeManager
+4158 ResourceManager
+3736 DataNode
+gopalkrishna@ubuntu:~/inputdir$ hdfs dfs-mkdir /jaganprac
+Error: Could not find or load main class dfs-mkdir
+gopalkrishna@ubuntu:~/inputdir$ hdfs dfs -mkdir /jaganprac
+gopalkrishna@ubuntu:~/inputdir$ cd jaganprac
+bash: cd: jaganprac: No such file or directory
+gopalkrishna@ubuntu:~/inputdir$ hdfs dfs -ll /jaganprac
+-ll: Unknown command
+gopalkrishna@ubuntu:~/inputdir$ hdfs dfs -ls /jaganprac
+gopalkrishna@ubuntu:~/inputdir$ hdfs dfs -put j.log /jaganprac
+gopalkrishna@ubuntu:~/inputdir$ hdfs dfs -ls /jaganprac
+Found 1 items
+-rw-r--r--   1 gopalkrishna supergroup       1528 2018-01-20 03:36 /jaganprac/j.log
+gopalkrishna@ubuntu:~/inputdir$ hdfs dfs -cat /jaganprac/j.log
+public class PA_ConsentFormPdfCont {
+
+  public string pid;
+  
+  public ELE_Agreement__c pa{get;set;}
+  
+  public string sapId{get;set;}
+  
+  public string legalEmplyName{get;set;}
+  
+  public string legalEntity{get;set;}
+  
+  public string opt;
+  
+  public Boolean isCheck{get;set;}
+  
+  public Boolean isCheck2{get;set;}
+  
+  public Boolean isCheck3{get;set;}
+  
+  public string name{get;set;}
+ 
+  public PA_ConsentFormPdfCont()
+  {
+  
+    pid=ApexPages.CurrentPage().getParameters().get('id');
+      
+      try
+      {
+       pa=[Select id,Legal_Name_of_the_Employee__c,Legal_Entity__c,SAP_ID__c from ELE_Agreement__c where id=:pid];
+       
+       legalEmplyName=pa.Legal_Name_of_the_Employee__c;
+       
+       sapID=pa.SAP_ID__c ;
+       
+       legalEntity=pa.Legal_Entity__c;
+       
+       opt=ApexPages.CurrentPage().getParameters().get('option');
+       
+       if(opt=='opt1')
+        {
+          isCheck=true;
+          isCheck2=false;
+          isCheck3=false; 
+         
+        }
+        if(opt=='opt2')
+        {
+          isCheck2=true;
+          isCheck=false;
+          isCheck3=false;
+          
+         name=ApexPages.currentPage().getParameters().get('para');
+           
+        }
+        
+        if(opt=='opt3')
+        {
+          isCheck2=false;
+          isCheck=false;
+          isCheck3=true;
+          
+         name=ApexPages.currentPage().getParameters().get('para');
+           
+        }
+       
+       
+      }
+      catch(Exception e)
+      {
+      
+      }
+      
+        
+    }
+      
+}
+
+gopalkrishna@ubuntu:~/inputdir$ hdfs dfs -mv   /jaganprac/j.log /jaganprac/m.loggopalkrishna@ubuntu:~/inputdir$ hdfs dfs -ls /jaganpracFound 1 items
+-rw-r--r--   1 gopalkrishna supergroup       1528 2018-01-20 03:36 /jaganprac/m.log
+gopalkrishna@ubuntu:~/inputdir$ hdfs dfs -get/jaganprac/m.log jagan.log
+-get/jaganprac/m.log: Unknown command
+gopalkrishna@ubuntu:~/inputdir$ hdfs dfs -get /jaganprac/m.log jagan.log
+gopalkrishna@ubuntu:~/inputdir$ gdfs fsck /jaganprac/m.log
+No command 'gdfs' found, did you mean:
+ Command 'gdis' from package 'gdis' (universe)
+gdfs: command not found
+gopalkrishna@ubuntu:~/inputdir$ hdfs fsck /jaganprac/m.log
+Connecting to namenode via http://localhost:50070
+FSCK started by gopalkrishna (auth:SIMPLE) from /127.0.0.1 for path /jaganprac/m.log at Sat Jan 20 03:45:50 PST 2018
+.Status: HEALTHY
+ Total size:	1528 B
+ Total dirs:	0
+ Total files:	1
+ Total symlinks:		0
+ Total blocks (validated):	1 (avg. block size 1528 B)
+ Minimally replicated blocks:	1 (100.0 %)
+ Over-replicated blocks:	0 (0.0 %)
+ Under-replicated blocks:	0 (0.0 %)
+ Mis-replicated blocks:		0 (0.0 %)
+ Default replication factor:	1
+ Average block replication:	1.0
+ Corrupt blocks:		0
+ Missing replicas:		0 (0.0 %)
+ Number of data-nodes:		1
+ Number of racks:		1
+FSCK ended at Sat Jan 20 03:45:50 PST 2018 in 33 milliseconds
+
+
+The filesystem under path '/jaganprac/m.log' is HEALTHY
+gopalkrishna@ubuntu:~/inputdir$ hdfs dfs -cp /jaganprac/m.log /jagan.log
+gopalkrishna@ubuntu:~/inputdir$ hdfs dfs -ll /jaganprac/
+-ll: Unknown command
+gopalkrishna@ubuntu:~/inputdir$ hdfs dfs -ll /jaganprac
+-ll: Unknown command
+gopalkrishna@ubuntu:~/inputdir$ hdfs dfs -ls /
+Found 5 items
+drwxr-xr-x   - gopalkrishna supergroup          0 2017-05-12 21:39 /hbase
+-rw-r--r--   1 gopalkrishna supergroup       1528 2018-01-20 03:47 /jagan.log
+drwxr-xr-x   - gopalkrishna supergroup          0 2018-01-20 03:39 /jaganprac
+drwx-wx-wx   - gopalkrishna supergroup          0 2017-05-12 22:48 /tmp
+drwxr-xr-x   - gopalkrishna supergroup          0 2017-05-12 22:49 /user
+gopalkrishna@ubuntu:~/inputdir$ hdfs dfs -ls /jaganprac
+Found 1 items
+-rw-r--r--   1 gopalkrishna supergroup       1528 2018-01-20 03:36 /jaganprac/m.log
+gopalkrishna@ubuntu:~/inputdir$ hdfs dfs -mkdir /jaganprac/onemoredir
+gopalkrishna@ubuntu:~/inputdir$ hdfs dfs -ls /jaganprac
+Found 2 items
+-rw-r--r--   1 gopalkrishna supergroup       1528 2018-01-20 03:36 /jaganprac/m.log
+drwxr-xr-x   - gopalkrishna supergroup          0 2018-01-20 03:51 /jaganprac/onemoredir
+gopalkrishna@ubuntu:~/inputdir$ hdfs dfs -chmod 777 /jaganprac/m.log
+gopalkrishna@ubuntu:~/inputdir$ hdfs dfs -ls /jaganprac
+Found 2 items
+-rwxrwxrwx   1 gopalkrishna supergroup       1528 2018-01-20 03:36 /jaganprac/m.log
+drwxr-xr-x   - gopalkrishna supergroup          0 2018-01-20 03:51 /jaganprac/onemoredir
+gopalkrishna@ubuntu:~/inputdir$ hdfs dfs -chown root /jaganprac/m.log
+gopalkrishna@ubuntu:~/inputdir$ hdfs dfs -ls /jaganprac
+Found 2 items
+-rwxrwxrwx   1 root         supergroup       1528 2018-01-20 03:36 /jaganprac/m.log
+drwxr-xr-x   - gopalkrishna supergroup          0 2018-01-20 03:51 /jaganprac/onemoredir
+gopalkrishna@ubuntu:~/inputdir$ hdfs dfs -chgrp gopalkrishna /jaganprac/m.log
+gopalkrishna@ubuntu:~/inputdir$ hdfs dfs -ls /jaganprac
+Found 2 items
+-rwxrwxrwx   1 root         gopalkrishna       1528 2018-01-20 03:36 /jaganprac/m.log
+drwxr-xr-x   - gopalkrishna supergroup            0 2018-01-20 03:51 /jaganprac/onemoredir
+gopalkrishna@ubuntu:~/inputdir$ nano r.log
+gopalkrishna@ubuntu:~/inputdir$ cat r.log
+1.Which is a valid method signature in an interface?
+a)private int getArea(); 
+b)protected float getVol(float x); 
+c) public static void main(String [] args); 
+d)boolean setFlag(Boolean [] test []);
+
+2.Which statement is true about interfaces?
+a)Interfaces allow multiple implementation inheritance.
+b)Interfaces can extend any number of other interfaces. 
+c) Members of an interface are never static. 
+d)Members of an interface can always be declared static. 
+
+3.Which statement is true about interfaces?
+a)The keyword extends is used to specify that an interface inherits from another interface.
+b) The keyword extends is used to specify that a class inherits from an interface. 
+c) The keyword implements is used to specify that an interface inherits from another interface. 
+d)The keyword implements is used to specify that a class inherits from another class. 
+
+4.Which of the field declaration is legal within the body of an interface?
+a) protected static int answer = 42; 
+b)volatile static int answer = 42; 
+c)int answer = 42;
+d)private final static int answer = 42; 
+
+
+gopalkrishna@ubuntu:~/inputdir$ hdfs dfs - copyFromLocal r.log /jaganprac/onemoredir
+copyFromLocal: Unknown command
+Did you mean -copyFromLocal?  This command begins with a dash.
+gopalkrishna@ubuntu:~/inputdir$ hdfs dfs -copyFromLocal r.log /jaganprac/onemoredir
+gopalkrishna@ubuntu:~/inputdir$ hdfs dfs -ls /jaganprac
+Found 2 items
+-rwxrwxrwx   1 root         gopalkrishna       1528 2018-01-20 03:36 /jaganprac/m.log
+drwxr-xr-x   - gopalkrishna supergroup            0 2018-01-20 04:00 /jaganprac/onemoredir
+gopalkrishna@ubuntu:~/inputdir$ hdfs dfs -ls -R /jaganprac
+-rwxrwxrwx   1 root         gopalkrishna       1528 2018-01-20 03:36 /jaganprac/m.log
+drwxr-xr-x   - gopalkrishna supergroup            0 2018-01-20 04:00 /jaganprac/onemoredir
+-rw-r--r--   1 gopalkrishna supergroup         1078 2018-01-20 04:00 /jaganprac/onemoredir/r.log
+gopalkrishna@ubuntu:~/inputdir$ hdfs dfs -mv /jaganprac/m.log /jaganprac/k.log
+gopalkrishna@ubuntu:~/inputdir$ hdfs dfs -Ddfs.replication=5 -put r.log /jaganprac
+gopalkrishna@ubuntu:~/inputdir$ hdfs fsck /jaganprac/r.log
+Connecting to namenode via http://localhost:50070
+FSCK started by gopalkrishna (auth:SIMPLE) from /127.0.0.1 for path /jaganprac/r.log at Sat Jan 20 04:05:47 PST 2018
+.
+/jaganprac/r.log:  Under replicated BP-548531308-127.0.1.1-1494577535379:blk_1073742321_1500. Target Replicas is 5 but found 1 replica(s).
+Status: HEALTHY
+ Total size:	1078 B
+ Total dirs:	0
+ Total files:	1
+ Total symlinks:		0
+ Total blocks (validated):	1 (avg. block size 1078 B)
+ Minimally replicated blocks:	1 (100.0 %)
+ Over-replicated blocks:	0 (0.0 %)
+ Under-replicated blocks:	1 (100.0 %)
+ Mis-replicated blocks:		0 (0.0 %)
+ Default replication factor:	1
+ Average block replication:	1.0
+ Corrupt blocks:		0
+ Missing replicas:		4 (80.0 %)
+ Number of data-nodes:		1
+ Number of racks:		1
+FSCK ended at Sat Jan 20 04:05:47 PST 2018 in 20 milliseconds
+
+
+The filesystem under path '/jaganprac/r.log' is HEALTHY
+gopalkrishna@ubuntu:~/inputdir$ hdfs dfs -setrep 5  /jaganprac/r.logReplication 5 set: /jaganprac/r.log
+gopalkrishna@ubuntu:~/inputdir$ hdfs dfs -setrep 3  /jaganprac/r.log
+Replication 3 set: /jaganprac/r.log
+gopalkrishna@ubuntu:~/inputdir$ hdfs fsck /jaganprac/r.log
+Connecting to namenode via http://localhost:50070
+FSCK started by gopalkrishna (auth:SIMPLE) from /127.0.0.1 for path /jaganprac/r.log at Sat Jan 20 04:08:02 PST 2018
+.
+/jaganprac/r.log:  Under replicated BP-548531308-127.0.1.1-1494577535379:blk_1073742321_1500. Target Replicas is 3 but found 1 replica(s).
+Status: HEALTHY
+ Total size:	1078 B
+ Total dirs:	0
+ Total files:	1
+ Total symlinks:		0
+ Total blocks (validated):	1 (avg. block size 1078 B)
+ Minimally replicated blocks:	1 (100.0 %)
+ Over-replicated blocks:	0 (0.0 %)
+ Under-replicated blocks:	1 (100.0 %)
+ Mis-replicated blocks:		0 (0.0 %)
+ Default replication factor:	1
+ Average block replication:	1.0
+ Corrupt blocks:		0
+ Missing replicas:		2 (66.666664 %)
+ Number of data-nodes:		1
+ Number of racks:		1
+FSCK ended at Sat Jan 20 04:08:02 PST 2018 in 29 milliseconds
+
+
+The filesystem under path '/jaganprac/r.log' is HEALTHY
+gopalkrishna@ubuntu:~/inputdir$ hdfs dfs -count /jaganprac
+           2            3               3684 /jaganprac
+gopalkrishna@ubuntu:~/inputdir$ hdfs dfs -count /jaganprac/r.log
+           0            1               1078 /jaganprac/r.log
+gopalkrishna@ubuntu:~/inputdir$ hdfs dfs -cat /jaganprac/r.log | head 2
+head: cannot open ‘2’ for reading: No such file or directory
+
+
+^[[A^[[A
+^Xcat: Unable to write to output stream.
+
+gopalkrishna@ubuntu:~/inputdir$ 
+gopalkrishna@ubuntu:~/inputdir$ 
+gopalkrishna@ubuntu:~/inputdir$ hdfs dfs -count /jaganprac/r.log
+           0            1               1078 /jaganprac/r.log
+gopalkrishna@ubuntu:~/inputdir$ hdfs dfs -cat /jaganprac/r.log | head -2
+1.Which is a valid method signature in an interface?
+a)private int getArea(); 
+gopalkrishna@ubuntu:~/inputdir$ hdfs dfs -cat /jaganprac/r.log | tail -2
+
+
+gopalkrishna@ubuntu:~/inputdir$ hdfs dfs -wc /jaganprac/r.log 
+-wc: Unknown command
+gopalkrishna@ubuntu:~/inputdir$ hdfs dfs -cat /jaganprac/r.log | wc
+     25     165    1078
+gopalkrishna@ubuntu:~/inputdir$ hdfs dfs -cat /jaganprac/r.log | wc -w
+165
+gopalkrishna@ubuntu:~/inputdir$ hdfs dfs -cat /jaganprac/r.log | wc -l
+25
